@@ -16,5 +16,7 @@ module.exports = {
         },
       },
     ],
+    //SOURCE: https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation/
+    'react-native-reanimated/plugin',
   ],
 };
