@@ -1,9 +1,5 @@
-import { View, Text } from 'react-native';
+import { AppNavigation } from 'navigation/AppNavigation/AppNavigation';
 
 export const App = () => {
-  return (
-    <View>
-      <Text>App</Text>
-    </View>
-  );
+  return <AppNavigation />;
 };
