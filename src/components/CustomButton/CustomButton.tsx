@@ -13,14 +13,18 @@ export const CustomButton: FC<CustomButtonProps> = ({
   icon,
   iconSize,
   children,
+  style,
+  titleStyle,
   buttonType = ButtonSize.Large,
   ...props
 }) => (
   <TouchableOpacity
     onPress={handlePress}
-    style={[styles.button, !!icon && styles.icon]}
+    style={[styles.button, style, !!icon && styles.icon]}
     {...props}>
-    {!!title && <Text style={[styles[buttonType], styles.text]}>{title}</Text>}
+    {!!title && (
+      <Text style={[styles[buttonType], styles.text, titleStyle]}>{title}</Text>
+    )}
     {!!icon && <Icon name={icon} size={iconSize} style={styles.icon} />}
     {children}
   </TouchableOpacity>
