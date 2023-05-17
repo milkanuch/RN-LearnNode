@@ -1,3 +1,5 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 export enum AuthStackNavigationTypes {
   WelcomeScreen = 'WelcomeScreen',
   SignInScreen = 'SignInScreen',
@@ -9,3 +11,8 @@ export type AuthStackParamList = {
   [AuthStackNavigationTypes.SignInScreen]: undefined;
   [AuthStackNavigationTypes.SignUpScreen]: undefined;
 };
+
+export type WelcomeScreenProps = NativeStackScreenProps<
+  AuthStackParamList,
+  AuthStackNavigationTypes.WelcomeScreen
+>;
