@@ -16,3 +16,8 @@ export type WelcomeScreenProps = NativeStackScreenProps<
   AuthStackParamList,
   AuthStackNavigationTypes.WelcomeScreen
 >;
+
+export type SignInScreenProps = NativeStackScreenProps<
+  AuthStackParamList,
+  AuthStackNavigationTypes.SignInScreen
+>;
