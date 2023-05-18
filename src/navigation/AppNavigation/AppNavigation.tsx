@@ -12,7 +12,7 @@ import { APP_THEME, EDGES } from './appNavigation.settings';
 import { styles } from './appNavigation.styles';
 
 export const AppNavigation = () => {
-  const isUserAuthenticated = false;
+  const isUserAuthenticated = true;
 
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
