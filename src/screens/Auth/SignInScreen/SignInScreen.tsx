@@ -29,6 +29,7 @@ import {
 export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
   const {
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm<SignInForm>({
     resolver: yupResolver(signInScheme),
@@ -78,12 +79,13 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
             onBlur={handleOnBlur}
             onChangeText={handlePasswordInput}
             placeholder={PASSWORD_SETTINGS.placeholder}
+            secureTextEntry={PASSWORD_SETTINGS.secureTextEntry}
             value={value}
           />
         )}
       />
       <CustomButton
-        onPress={handleContinuePress}
+        onPress={handleSubmit(handleContinuePress)}
         style={styles.continueButton}
         title={CONTINUE_TITLE}
       />

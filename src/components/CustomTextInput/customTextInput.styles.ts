@@ -1,7 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 import { COLORS } from 'constants/colors/colors';
-import { SPACE_MONO_BOLD_ITALIC } from 'constants/fonts/fonts';
+import {
+  SPACE_MONO_BOLD_ITALIC,
+  SPACE_MONO_REGULAR,
+} from 'constants/fonts/fonts';
 import { SIZES } from 'constants/sizes/sizes';
 
 export const styles = StyleSheet.create({
@@ -11,10 +14,10 @@ export const styles = StyleSheet.create({
     ...SPACE_MONO_BOLD_ITALIC,
   },
   input: {
-    borderColor: COLORS.darkGrey,
-    borderWidth: 1,
+    fontSize: SIZES.L,
     padding: SIZES.S,
     paddingLeft: SIZES.L,
+    ...SPACE_MONO_REGULAR,
   },
   inputContainer: {
     backgroundColor: COLORS.lightGrey,
@@ -24,5 +27,6 @@ export const styles = StyleSheet.create({
     color: COLORS.purple,
     fontSize: SIZES.L,
     marginVertical: SIZES.XXXS,
+    ...SPACE_MONO_REGULAR,
   },
 });
