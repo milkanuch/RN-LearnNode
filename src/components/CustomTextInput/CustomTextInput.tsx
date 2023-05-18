@@ -7,13 +7,14 @@ import { CustomTextInputProps } from './customTextInput.types';
 export const CustomTextInput: FC<CustomTextInputProps> = ({
   value,
   label,
-  children,
   error,
+  children,
+  contentContainerStyle,
   onChangeText: handleTextInput,
   ...props
 }) => {
   return (
-    <View>
+    <View style={contentContainerStyle}>
       {!!label && <Text style={styles.label}>{label}</Text>}
       <View style={styles.inputContainer}>
         <TextInput
