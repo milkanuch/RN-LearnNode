@@ -1,4 +1,4 @@
-import { ScrollView, View } from 'react-native';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
@@ -6,6 +6,10 @@ import { useForm, Controller } from 'react-hook-form';
 import { CustomButton } from 'components/CustomButton/CustomButton';
 import { CustomTextInput } from 'components/CustomTextInput/CustomTextInput';
 import { Title } from 'components/Title/Title';
+
+import { COLORS } from 'constants/colors/colors';
+
+import { useSignUpMutation } from 'services/user';
 
 import { signUpScheme } from './signUpScreen.scheme';
 
@@ -25,6 +29,7 @@ import { SignUpForm } from './signUpScreen.types';
 export const SignUpScreen = () => {
   const {
     control,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpForm>({
@@ -32,9 +37,22 @@ export const SignUpScreen = () => {
     mode: FORM_MODE,
   });
 
-  const handleContinuePress = () => {
-    //TODO: add store and services logic
+  const [signUp, { isLoading }] = useSignUpMutation();
+
+  const handleSignUpPress = async () => {
+    const values = getValues();
+
+    await signUp(values);
   };
+
+  if (isLoading)
+    return (
+      <ActivityIndicator
+        color={COLORS.purple}
+        size={'large'}
+        style={styles.screenContainer}
+      />
+    );
 
   return (
     <ScrollView
@@ -124,7 +142,7 @@ export const SignUpScreen = () => {
         />
       </View>
       <CustomButton
-        onPress={handleSubmit(handleContinuePress)}
+        onPress={handleSubmit(handleSignUpPress)}
         style={styles.continueButton}
         title={SIGN_UP_TITLE}
       />
