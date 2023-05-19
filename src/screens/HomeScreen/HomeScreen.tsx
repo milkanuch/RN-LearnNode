@@ -11,6 +11,7 @@ import { styles } from './homeScreen.styles';
 const renderItem: ListRenderItem<string> = () => <Text>Item</Text>;
 
 const keyExtractor = (item: string) => item;
+
 export const HomeScreen = () => {
   const [courses, setCourses] = useState<string[] | undefined>(undefined);
 
