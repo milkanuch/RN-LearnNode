@@ -30,6 +30,7 @@ const REACT_RULES = {
 const ESLINT_RULES = {
   'no-console': ERROR,
   'object-shorthand': ERROR,
+  'newline-after-var': ERROR,
   'no-magic-numbers': [ERROR, { ignoreArrayIndexes: true, ignore: [1, 0, -1] }],
 };
 
