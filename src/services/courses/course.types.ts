@@ -1,7 +1,7 @@
 export enum CourseEndpoints {
   GetCourses = '/courses/',
   AddCourse = '/courses/add-course',
-  GetCourseById = '/courses/course',
+  GetCourseById = '/courses/get',
 }
 
 export interface Course {

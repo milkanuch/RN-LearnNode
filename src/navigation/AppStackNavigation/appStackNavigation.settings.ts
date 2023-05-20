@@ -6,6 +6,7 @@ export const BOTTOM_TAB_NAVIGATION_OPTIONS: NativeStackNavigationOptions = {
 
 export const QUIZ_SCREEN_OPTIONS: NativeStackNavigationOptions = {
   headerShown: true,
+  headerTitle: 'Quiz',
 };
 
 export const QUIZ_RESULT_SCREEN_OPTIONS: NativeStackNavigationOptions = {
