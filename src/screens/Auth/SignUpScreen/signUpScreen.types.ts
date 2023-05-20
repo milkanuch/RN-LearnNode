@@ -13,5 +13,6 @@ export interface SignUpInputsSettings {
   maxLength?: number;
   placeholder: string;
   secureTextEntry?: boolean;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   keyboardType?: KeyboardType;
 }

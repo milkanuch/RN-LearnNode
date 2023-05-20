@@ -9,12 +9,14 @@ export const EMAIL_INPUT_SETTINGS: SignInInputsSettings = {
   name: 'email',
   label: 'E-mail',
   maxLength: 25,
+  autoCapitalize: 'none',
   placeholder: 'john.doe@example.com',
 };
 export const PASSWORD_SETTINGS: SignInInputsSettings = {
   name: 'password',
   label: 'Password',
   placeholder: '********',
+  autoCapitalize: 'none',
   secureTextEntry: true,
 };
 

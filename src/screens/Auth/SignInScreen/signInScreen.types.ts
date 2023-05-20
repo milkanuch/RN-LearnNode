@@ -10,6 +10,7 @@ export interface SignInInputsSettings {
   label: string;
   maxLength?: number;
   placeholder: string;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   secureTextEntry?: boolean;
   keyboardType?: KeyboardType;
 }

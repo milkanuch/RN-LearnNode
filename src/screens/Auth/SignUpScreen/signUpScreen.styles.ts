@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { COLORS } from 'constants/colors/colors';
-import { SPACE_MONO_BOLD } from 'constants/fonts/fonts';
+import { SPACE_MONO_BOLD, SPACE_MONO_BOLD_ITALIC } from 'constants/fonts/fonts';
 import { SIZES, responsiveWidth } from 'constants/sizes/sizes';
 
 const BUTTON_BORDER_RADIUS = 10;
@@ -14,6 +14,12 @@ export const styles = StyleSheet.create({
     left: SIZES.S,
     position: 'absolute',
     right: SIZES.S,
+  },
+  error: {
+    color: COLORS.red,
+    fontSize: SIZES.M,
+    marginVertical: SIZES.M,
+    ...SPACE_MONO_BOLD_ITALIC,
   },
   passwordInput: {
     width: responsiveWidth(PASSWORD_INPUT_WIDTH),
