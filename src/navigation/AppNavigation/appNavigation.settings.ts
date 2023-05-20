@@ -7,7 +7,7 @@ export const APP_THEME: Theme = {
   colors: {
     ...DefaultTheme.colors,
     background: COLORS.darkGrey,
-    primary: COLORS.purple,
+    primary: COLORS.white,
     text: COLORS.white,
     card: COLORS.grey,
   },

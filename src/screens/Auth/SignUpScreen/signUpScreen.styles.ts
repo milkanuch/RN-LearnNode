@@ -1,7 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 import { COLORS } from 'constants/colors/colors';
-import { SPACE_MONO_BOLD, SPACE_MONO_BOLD_ITALIC } from 'constants/fonts/fonts';
+import {
+  SPACE_MONO_BOLD,
+  SPACE_MONO_BOLD_ITALIC,
+  SPACE_MONO_REGULAR,
+} from 'constants/fonts/fonts';
 import { SIZES, responsiveWidth } from 'constants/sizes/sizes';
 
 const BUTTON_BORDER_RADIUS = 10;
@@ -21,6 +25,13 @@ export const styles = StyleSheet.create({
     marginVertical: SIZES.M,
     ...SPACE_MONO_BOLD_ITALIC,
   },
+  input: {
+    color: COLORS.white,
+    fontSize: SIZES.L,
+    padding: SIZES.S,
+    paddingLeft: SIZES.L,
+    ...SPACE_MONO_REGULAR,
+  },
   passwordInput: {
     width: responsiveWidth(PASSWORD_INPUT_WIDTH),
   },
@@ -28,7 +39,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-
   screen: {
     flex: 1,
   },
@@ -39,12 +49,12 @@ export const styles = StyleSheet.create({
   },
   signUpButton: {
     backgroundColor: COLORS.transparent,
-    borderColor: COLORS.purple,
+    borderColor: COLORS.white,
     borderRadius: BUTTON_BORDER_RADIUS,
     borderWidth: 1,
   },
   signUpButtonText: {
-    color: COLORS.purple,
+    color: COLORS.white,
     fontSize: SIZES.M,
     ...SPACE_MONO_BOLD,
   },

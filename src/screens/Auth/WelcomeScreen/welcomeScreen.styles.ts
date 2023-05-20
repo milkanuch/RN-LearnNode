@@ -8,12 +8,7 @@ const IMAGE_SCALE_PERCENTAGE = 30;
 
 export const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    backgroundColor: COLORS.purple,
-    borderRadius: 4,
     bottom: 40,
-    flexDirection: 'row',
-    justifyContent: 'center',
     left: SIZES.S,
     position: 'absolute',
     right: SIZES.S,
@@ -21,7 +16,7 @@ export const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
     height: responsiveHeight(IMAGE_SCALE_PERCENTAGE),
-    marginVertical: SIZES.M,
+    marginBottom: SIZES.XL,
     width: responsiveHeight(IMAGE_SCALE_PERCENTAGE),
   },
   screen: {
@@ -34,7 +29,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SIZES.M,
   },
   title: {
-    color: COLORS.purple,
+    color: COLORS.lightGreen,
     fontSize: 20,
     ...SPACE_MONO_REGULAR,
   },

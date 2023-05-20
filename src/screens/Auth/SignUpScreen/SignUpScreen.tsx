@@ -9,7 +9,7 @@ import { Title } from 'components/Title/Title';
 
 import { AppLoadingScreen } from 'screens/AppLoadingScreen/AppLoadingScreen';
 
-import { useSignUpMutation } from 'services/user';
+import { useSignUpMutation } from 'services/auth';
 import { useAppDispatch } from 'store/index';
 import { setIsUserLogged } from 'store/userSlice/userSlice';
 
@@ -70,6 +70,7 @@ export const SignUpScreen = () => {
             onBlur={handleOnBlur}
             onChangeText={handleNicknameInput}
             placeholder={NICKNAME_INPUT_SETTINGS.placeholder}
+            style={styles.input}
             value={value}
           />
         )}
@@ -88,6 +89,7 @@ export const SignUpScreen = () => {
             onBlur={handleOnBlur}
             onChangeText={handleEmailInput}
             placeholder={EMAIL_INPUT_SETTINGS.placeholder}
+            style={styles.input}
             value={value}
           />
         )}
@@ -113,6 +115,7 @@ export const SignUpScreen = () => {
               onChangeText={handlePasswordInput}
               placeholder={PASSWORD_SETTINGS.placeholder}
               secureTextEntry={PASSWORD_SETTINGS.secureTextEntry}
+              style={styles.input}
               value={value}
             />
           )}
@@ -137,6 +140,7 @@ export const SignUpScreen = () => {
               onChangeText={handleConfirmPasswordInput}
               placeholder={CONFIRM_PASSWORD_SETTINGS.placeholder}
               secureTextEntry={CONFIRM_PASSWORD_SETTINGS.secureTextEntry}
+              style={styles.input}
               value={value}
             />
           )}

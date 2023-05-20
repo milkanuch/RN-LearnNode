@@ -32,7 +32,6 @@ export const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: SIZES.L,
   },
-
   modalBackground: {
     backgroundColor: COLORS.lightGrey,
   },
@@ -46,6 +45,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     alignSelf: 'center',
+    color: COLORS.lightGreen,
     fontSize: 18,
     ...SPACE_MONO_REGULAR,
   },

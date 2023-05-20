@@ -36,11 +36,8 @@ export const courseApi = createApi({
     }),
     getCourseById: builder.query<GetCourseByIdResponse, GetCourseByIdRequest>({
       query: id => ({
-        url: CourseEndpoints.GetCourseById,
+        url: `${CourseEndpoints.GetCourseById}/${id}`,
         method: 'GET',
-        params: {
-          id,
-        },
       }),
     }),
   }),

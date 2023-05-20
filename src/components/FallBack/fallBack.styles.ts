@@ -4,7 +4,7 @@ import { COLORS } from 'constants/colors/colors';
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: COLORS.darkPurple,
+    backgroundColor: COLORS.lightGreen,
     borderRadius: 50,
     padding: 16,
   },
@@ -25,12 +25,12 @@ export const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   subtitle: {
-    color: COLORS.purple,
+    color: COLORS.white,
     fontSize: 32,
     fontWeight: '800',
   },
   title: {
-    color: COLORS.purple,
+    color: COLORS.white,
     fontSize: 48,
     fontWeight: '300',
     paddingBottom: 16,

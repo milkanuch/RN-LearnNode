@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     paddingVertical: SIZES.XS,
   },
   name: {
-    color: COLORS.darkPurple,
+    color: COLORS.lightGreen,
     fontSize: SIZES.XXL,
     ...SPACE_MONO_REGULAR,
   },

@@ -10,7 +10,7 @@ import { Title } from 'components/Title/Title';
 
 import { AppLoadingScreen } from 'screens/AppLoadingScreen/AppLoadingScreen';
 
-import { useSignInMutation } from 'services/user';
+import { useSignInMutation } from 'services/auth';
 import { useAppDispatch } from 'store/index';
 import { setIsUserLogged } from 'store/userSlice/userSlice';
 
@@ -79,6 +79,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
             onBlur={handleOnBlur}
             onChangeText={handleEmailInput}
             placeholder={EMAIL_INPUT_SETTINGS.placeholder}
+            style={styles.input}
             value={value}
           />
         )}
@@ -98,6 +99,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
             onChangeText={handlePasswordInput}
             placeholder={PASSWORD_SETTINGS.placeholder}
             secureTextEntry={PASSWORD_SETTINGS.secureTextEntry}
+            style={styles.input}
             value={value}
           />
         )}

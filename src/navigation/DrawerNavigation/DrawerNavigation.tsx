@@ -1,4 +1,9 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {
+  DrawerContentComponentProps,
+  createDrawerNavigator,
+} from '@react-navigation/drawer';
+
+import { SideBar } from 'components/SideBar/SideBar';
 
 import { HomeStackNavigation } from 'navigation/HomeStackNavigation/HomeStackNavigation';
 
@@ -7,9 +12,13 @@ import { DrawerNavigationTypes } from './drawerNavigation.types';
 
 const Drawer = createDrawerNavigator();
 
+const renderDrawerContent = (props: DrawerContentComponentProps) => {
+  return <SideBar {...props} />;
+};
+
 export const DrawerNavigation = () => {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator drawerContent={renderDrawerContent}>
       <Drawer.Screen
         component={HomeStackNavigation}
         name={DrawerNavigationTypes.HomeStack}
