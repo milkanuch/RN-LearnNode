@@ -9,7 +9,7 @@ import {
 } from 'constants/sizes/sizes';
 
 const CONTAINER_WIDTH = 97;
-const CONTAINER_HEIGHT = 10;
+const CONTAINER_HEIGHT = 13;
 
 export const styles = StyleSheet.create({
   button: {
@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
   description: {
     color: COLORS.white,
     fontSize: SIZES.M,
+    marginVertical: SIZES.XXS,
     ...SPACE_MONO_REGULAR,
   },
   descriptionContainer: {

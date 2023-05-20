@@ -12,11 +12,11 @@ import { BUTTON_TITLE, ICON_NAME } from './sectionsItem.settings';
 import { styles } from './sectionsItem.styles';
 import { AppStackNavigationTypes } from 'navigation/AppStackNavigation/appStackNavigation.types';
 
-export const SectionsItem: FC<Course> = ({ id, name, description }) => {
+export const SectionsItem: FC<Course> = ({ _id, name, description }) => {
   const { navigate } = useNavigation();
 
   const handleSectionPress = () => {
-    navigate(AppStackNavigationTypes.CourseScreen, { id });
+    navigate(AppStackNavigationTypes.CourseScreen, { id: _id });
   };
 
   return (
