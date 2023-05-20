@@ -45,7 +45,7 @@ export const SignUpScreen = () => {
     const values = getValues();
     const result = await signUp(values);
 
-    if (result) {
+    if ('data' in result && result.data) {
       dispatch(setIsUserLogged(true));
     }
   };
