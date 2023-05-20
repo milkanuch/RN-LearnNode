@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import { CourseScreen } from 'screens/CourseScreen/CourseScreen';
 import { QuizResultScreen } from 'screens/QuizResultScreen/QuizResultScreen';
 import { QuizScreen } from 'screens/QuizScreen/QuizScreen';
 
@@ -9,6 +10,7 @@ import {
   QUIZ_SCREEN_OPTIONS,
   QUIZ_RESULT_SCREEN_OPTIONS,
   BOTTOM_TAB_NAVIGATION_OPTIONS,
+  COURSE_SCREEN_OPTIONS,
 } from './appStackNavigation.settings';
 import {
   AppStackNavigationTypes,
@@ -24,6 +26,11 @@ export const AppStackNavigation = () => {
         component={BottomTabNavigation}
         name={AppStackNavigationTypes.BottomTab}
         options={BOTTOM_TAB_NAVIGATION_OPTIONS}
+      />
+      <NativeStack.Screen
+        component={CourseScreen}
+        name={AppStackNavigationTypes.CourseScreen}
+        options={COURSE_SCREEN_OPTIONS}
       />
       <NativeStack.Screen
         component={QuizScreen}

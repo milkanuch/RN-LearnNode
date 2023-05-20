@@ -11,3 +11,7 @@ export const QUIZ_SCREEN_OPTIONS: NativeStackNavigationOptions = {
 export const QUIZ_RESULT_SCREEN_OPTIONS: NativeStackNavigationOptions = {
   headerShown: false,
 };
+
+export const COURSE_SCREEN_OPTIONS: NativeStackNavigationOptions = {
+  headerShown: false,
+};
