@@ -4,6 +4,10 @@ import { Image, ScrollView, Text, View } from 'react-native';
 import { CustomButton } from 'components/CustomButton/CustomButton';
 import { IconSize } from 'components/CustomButton/customButton.types';
 
+import { useAppDispatch, useAppSelector } from 'store/index';
+import { setIsUserLogged } from 'store/userSlice/userSlice';
+import { selectAccessToken } from 'store/userTokensSlice/userTokensSlice';
+
 import {
   BUTTON_TITLE,
   ICON_NAME,
@@ -18,8 +22,17 @@ import {
 } from 'navigation/AuthStackNavigation/authStackNavigation.types';
 
 export const WelcomeScreen: FC<WelcomeScreenProps> = ({ navigation }) => {
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(selectAccessToken);
+
   const handleContinuePress = () => {
-    navigation.navigate(AuthStackNavigationTypes.SignInScreen);
+    if (!token) {
+      navigation.navigate(AuthStackNavigationTypes.SignInScreen);
+      return;
+    }
+
+    dispatch(setIsUserLogged(true));
+    return;
   };
 
   return (

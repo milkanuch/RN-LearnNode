@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ScrollView } from 'react-native';
+import { ActivityIndicator, ScrollView } from 'react-native';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
@@ -7,6 +7,10 @@ import { useForm, Controller } from 'react-hook-form';
 import { CustomButton } from 'components/CustomButton/CustomButton';
 import { CustomTextInput } from 'components/CustomTextInput/CustomTextInput';
 import { Title } from 'components/Title/Title';
+
+import { COLORS } from 'constants/colors/colors';
+
+import { useSignInMutation } from 'services/user';
 
 import { signInScheme } from './signInScreen.schema';
 
@@ -29,6 +33,7 @@ import {
 export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
   const {
     control,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm<SignInForm>({
@@ -36,13 +41,26 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
     mode: FORM_MODE,
   });
 
-  const handleContinuePress = () => {
-    //TODO: add store and services logic
+  const [signIn, { isLoading }] = useSignInMutation();
+
+  const handleContinuePress = async () => {
+    const { email, password } = getValues();
+
+    await signIn({ email, password });
   };
 
   const handleSignUpPress = () => {
     navigation.navigate(AuthStackNavigationTypes.SignUpScreen);
   };
+
+  if (isLoading)
+    return (
+      <ActivityIndicator
+        color={COLORS.purple}
+        size={'large'}
+        style={styles.screenContainer}
+      />
+    );
 
   return (
     <ScrollView

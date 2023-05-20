@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
   },
   inputContainer: {
     backgroundColor: COLORS.lightGrey,
+    borderRadius: SIZES.XXXS,
     marginVertical: SIZES.XXS,
   },
   label: {

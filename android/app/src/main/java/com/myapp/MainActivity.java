@@ -5,6 +5,7 @@ import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import com.lugg.RNCConfig.RNCConfigPackage;
 
 public class MainActivity extends ReactActivity {
 

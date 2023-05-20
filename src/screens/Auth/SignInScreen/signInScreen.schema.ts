@@ -2,6 +2,7 @@ import * as yup from 'yup';
 
 const MIN_PASSWORD_LENGTH = 6;
 const MAX_PASSWORD_LENGTH = 20;
+
 export const signInScheme = yup.object().shape({
   email: yup
     .string()
