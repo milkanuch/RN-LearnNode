@@ -9,6 +9,7 @@ export const CustomTextInput: FC<CustomTextInputProps> = ({
   label,
   error,
   children,
+  errorMessageStyle,
   contentContainerStyle,
   onChangeText: handleTextInput,
   ...props
@@ -24,7 +25,9 @@ export const CustomTextInput: FC<CustomTextInputProps> = ({
           {...props}
         />
       </View>
-      {!!error && <Text style={styles.error}>{error}</Text>}
+      {!!error && (
+        <Text style={[styles.error, errorMessageStyle]}>{error}</Text>
+      )}
       {children}
     </View>
   );
