@@ -16,7 +16,7 @@ export type GetCourseByIdResponse = Course;
 
 export type CourseResponse = Course[];
 
-export type AddCourseRequest = Omit<Course, 'id'>;
+export type AddCourseRequest = Omit<Course, '_id'>;
 
 export interface AddCourseResponse {
   message: string;
