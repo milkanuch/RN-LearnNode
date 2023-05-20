@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ActivityIndicator, ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
@@ -8,9 +8,11 @@ import { CustomButton } from 'components/CustomButton/CustomButton';
 import { CustomTextInput } from 'components/CustomTextInput/CustomTextInput';
 import { Title } from 'components/Title/Title';
 
-import { COLORS } from 'constants/colors/colors';
+import { AppLoadingScreen } from 'screens/AppLoadingScreen/AppLoadingScreen';
 
 import { useSignInMutation } from 'services/user';
+import { useAppDispatch } from 'store/index';
+import { setIsUserLogged } from 'store/userSlice/userSlice';
 
 import { signInScheme } from './signInScreen.schema';
 
@@ -40,27 +42,23 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
     resolver: yupResolver(signInScheme),
     mode: FORM_MODE,
   });
-
-  const [signIn, { isLoading }] = useSignInMutation();
+  const [signIn, { isLoading, error }] = useSignInMutation();
+  const dispatch = useAppDispatch();
 
   const handleContinuePress = async () => {
     const { email, password } = getValues();
+    const result = await signIn({ email, password });
 
-    await signIn({ email, password });
+    if (result) {
+      dispatch(setIsUserLogged(true));
+    }
   };
 
   const handleSignUpPress = () => {
     navigation.navigate(AuthStackNavigationTypes.SignUpScreen);
   };
 
-  if (isLoading)
-    return (
-      <ActivityIndicator
-        color={COLORS.purple}
-        size={'large'}
-        style={styles.screenContainer}
-      />
-    );
+  if (isLoading) return <AppLoadingScreen />;
 
   return (
     <ScrollView
@@ -75,6 +73,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
           field: { onChange: handleEmailInput, onBlur: handleOnBlur, value },
         }) => (
           <CustomTextInput
+            autoCapitalize={EMAIL_INPUT_SETTINGS.autoCapitalize}
             error={errors.email?.message}
             label={EMAIL_INPUT_SETTINGS.label}
             onBlur={handleOnBlur}
@@ -92,6 +91,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
           field: { onChange: handlePasswordInput, onBlur: handleOnBlur, value },
         }) => (
           <CustomTextInput
+            autoCapitalize={PASSWORD_SETTINGS.autoCapitalize}
             error={errors.password?.message}
             label={PASSWORD_SETTINGS.label}
             onBlur={handleOnBlur}
@@ -113,6 +113,11 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
         title={SIGN_UP_TITLE}
         titleStyle={styles.signUpButtonText}
       />
+      {!!error && (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        <Text style={styles.error}>{error.data.message}</Text>
+      )}
     </ScrollView>
   );
 };

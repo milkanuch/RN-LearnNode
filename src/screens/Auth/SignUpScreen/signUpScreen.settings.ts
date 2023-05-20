@@ -16,12 +16,14 @@ export const EMAIL_INPUT_SETTINGS: SignUpInputsSettings = {
   name: 'email',
   label: 'E-mail',
   maxLength: 25,
+  autoCapitalize: 'none',
   placeholder: 'john.doe@example.com',
 };
 
 export const PASSWORD_SETTINGS: SignUpInputsSettings = {
   name: 'password',
   label: 'Password',
+  autoCapitalize: 'none',
   placeholder: '********',
   secureTextEntry: true,
 };
@@ -29,6 +31,7 @@ export const PASSWORD_SETTINGS: SignUpInputsSettings = {
 export const CONFIRM_PASSWORD_SETTINGS: SignUpInputsSettings = {
   name: 'confirmPassword',
   label: 'Confirm password',
+  autoCapitalize: 'none',
   placeholder: '********',
   secureTextEntry: true,
 };

@@ -1,4 +1,4 @@
-import { ActivityIndicator, ScrollView, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
@@ -7,9 +7,11 @@ import { CustomButton } from 'components/CustomButton/CustomButton';
 import { CustomTextInput } from 'components/CustomTextInput/CustomTextInput';
 import { Title } from 'components/Title/Title';
 
-import { COLORS } from 'constants/colors/colors';
+import { AppLoadingScreen } from 'screens/AppLoadingScreen/AppLoadingScreen';
 
 import { useSignUpMutation } from 'services/user';
+import { useAppDispatch } from 'store/index';
+import { setIsUserLogged } from 'store/userSlice/userSlice';
 
 import { signUpScheme } from './signUpScreen.scheme';
 
@@ -36,23 +38,19 @@ export const SignUpScreen = () => {
     resolver: yupResolver(signUpScheme),
     mode: FORM_MODE,
   });
-
-  const [signUp, { isLoading }] = useSignUpMutation();
+  const [signUp, { isLoading, error }] = useSignUpMutation();
+  const dispatch = useAppDispatch();
 
   const handleSignUpPress = async () => {
     const values = getValues();
+    const result = await signUp(values);
 
-    await signUp(values);
+    if (result) {
+      dispatch(setIsUserLogged(true));
+    }
   };
 
-  if (isLoading)
-    return (
-      <ActivityIndicator
-        color={COLORS.purple}
-        size={'large'}
-        style={styles.screenContainer}
-      />
-    );
+  if (isLoading) return <AppLoadingScreen />;
 
   return (
     <ScrollView
@@ -84,6 +82,7 @@ export const SignUpScreen = () => {
           field: { onChange: handleEmailInput, onBlur: handleOnBlur, value },
         }) => (
           <CustomTextInput
+            autoCapitalize={EMAIL_INPUT_SETTINGS.autoCapitalize}
             error={errors.email?.message}
             label={EMAIL_INPUT_SETTINGS.label}
             onBlur={handleOnBlur}
@@ -106,6 +105,7 @@ export const SignUpScreen = () => {
             },
           }) => (
             <CustomTextInput
+              autoCapitalize={PASSWORD_SETTINGS.autoCapitalize}
               contentContainerStyle={styles.passwordInput}
               error={errors.password?.message}
               label={PASSWORD_SETTINGS.label}
@@ -129,6 +129,7 @@ export const SignUpScreen = () => {
             },
           }) => (
             <CustomTextInput
+              autoCapitalize={CONFIRM_PASSWORD_SETTINGS.autoCapitalize}
               contentContainerStyle={styles.passwordInput}
               error={errors.confirmPassword?.message}
               label={CONFIRM_PASSWORD_SETTINGS.label}
@@ -141,6 +142,11 @@ export const SignUpScreen = () => {
           )}
         />
       </View>
+      {!!error && (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        <Text style={styles.error}>{error.data.message}</Text>
+      )}
       <CustomButton
         onPress={handleSubmit(handleSignUpPress)}
         style={styles.continueButton}
