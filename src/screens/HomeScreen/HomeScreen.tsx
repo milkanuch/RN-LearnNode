@@ -1,32 +1,34 @@
-import { useEffect, useState } from 'react';
-import { Text, FlatList, ListRenderItem, View } from 'react-native';
+import { FlatList, ListRenderItem, View } from 'react-native';
 
-import { Title } from 'components/Title/Title';
+import { AppLoadingScreen } from 'screens/AppLoadingScreen/AppLoadingScreen';
+
+import { useGetCoursesQuery } from 'services/courses';
+import { Course } from 'services/courses/course.types';
 
 import { EmptyCoursesListComponent } from './EmptyCoursesListComponent/EmptyCoursesListComponent';
+import { SectionsItem } from './SectionsItem/SectionsItem';
 
-import { TITLE } from './homeScreen.settings';
 import { styles } from './homeScreen.styles';
 
-const renderItem: ListRenderItem<string> = () => <Text>Item</Text>;
+const renderItem: ListRenderItem<Course> = ({ item }) => (
+  <SectionsItem description={item.description} id={item.id} name={item.name} />
+);
 
-const keyExtractor = (item: string) => item;
+const keyExtractor = (item: Course) => item.id;
 
 export const HomeScreen = () => {
-  const [courses, setCourses] = useState<string[] | undefined>(undefined);
+  const { data: courses, isLoading } = useGetCoursesQuery();
 
-  useEffect(() => {
-    setCourses(undefined);
-  }, []);
+  if (isLoading) return <AppLoadingScreen />;
 
   return (
     <View style={styles.screen}>
-      <Title title={TITLE} />
       <FlatList
         ListEmptyComponent={EmptyCoursesListComponent}
-        data={courses}
+        data={courses?.course}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
