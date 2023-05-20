@@ -1,7 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Config from 'react-native-config';
 
-import { CourseEndpoints, CourseResponse } from './course.types';
+import {
+  AddCourseRequest,
+  AddCourseResponse,
+  CourseEndpoints,
+  CourseResponse,
+  GetCourseByIdRequest,
+  GetCourseByIdResponse,
+} from './course.types';
 
 const reducerPath = 'courseApi';
 
@@ -20,7 +27,27 @@ export const courseApi = createApi({
         method: 'GET',
       }),
     }),
+    addCourse: builder.mutation<AddCourseResponse, AddCourseRequest>({
+      query: body => ({
+        url: CourseEndpoints.AddCourse,
+        method: 'POST',
+        body,
+      }),
+    }),
+    getCourseById: builder.query<GetCourseByIdResponse, GetCourseByIdRequest>({
+      query: id => ({
+        url: CourseEndpoints.GetCourseById,
+        method: 'GET',
+        params: {
+          id,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetCoursesQuery } = courseApi;
+export const {
+  useGetCoursesQuery,
+  useAddCourseMutation,
+  useGetCourseByIdQuery,
+} = courseApi;
