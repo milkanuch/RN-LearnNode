@@ -49,7 +49,7 @@ export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
     const { email, password } = getValues();
     const result = await signIn({ email, password });
 
-    if (result) {
+    if ('data' in result && result.data) {
       dispatch(setIsUserLogged(true));
     }
   };

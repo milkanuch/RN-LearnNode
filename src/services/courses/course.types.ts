@@ -1,14 +1,23 @@
 export enum CourseEndpoints {
   GetCourses = '/courses/all',
+  AddCourse = '/courses/add-course',
+  GetCourseById = '/courses/get-course',
 }
 
 export interface Course {
-  id: string;
+  _id: string;
   name: string;
   description: string;
   link?: string;
 }
 
-export interface CourseResponse {
-  course: Course[];
+export type GetCourseByIdRequest = Course['_id'];
+export type GetCourseByIdResponse = Course;
+
+export type CourseResponse = Course[];
+
+export type AddCourseRequest = Omit<Course, '_id'>;
+
+export interface AddCourseResponse {
+  message: string;
 }
