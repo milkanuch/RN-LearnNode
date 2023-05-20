@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { userApi } from 'services/user';
 import { RootState } from 'store/index';
 
 import { UserState } from './userSlice.types';
@@ -17,6 +18,15 @@ const userSlice = createSlice({
     setIsUserLogged: (state: UserState, payload: PayloadAction<boolean>) => {
       state.isLogged = payload.payload;
     },
+  },
+  extraReducers: builder => {
+    builder.addMatcher(
+      userApi.endpoints.getCurrentUser.matchFulfilled,
+      (state, { payload }) => {
+        state.email = payload.email;
+        state.nickname = payload.nickname;
+      },
+    );
   },
 });
 

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { userApi } from 'services/user';
+import { authApi } from 'services/auth';
 import { RootState } from 'store/index';
 
 import { UserTokensState } from './userTokensSlice.types';
@@ -12,22 +12,28 @@ const initialState: UserTokensState = {
 const userTokensSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    deleteUserToken: (state: UserTokensState) => {
+      state.accessToken = null;
+    },
+  },
   extraReducers: builder => {
     builder.addMatcher(
-      userApi.endpoints.signIn.matchFulfilled,
+      authApi.endpoints.signIn.matchFulfilled,
       (state, { payload }) => {
         state.accessToken = payload.accessToken;
       },
     );
     builder.addMatcher(
-      userApi.endpoints.signUp.matchFulfilled,
+      authApi.endpoints.signUp.matchFulfilled,
       (state, { payload }) => {
         state.accessToken = payload.accessToken;
       },
     );
   },
 });
+
+export const { deleteUserToken } = userTokensSlice.actions;
 
 export const selectAccessToken = (state: RootState) =>
   state.userTokens.accessToken;

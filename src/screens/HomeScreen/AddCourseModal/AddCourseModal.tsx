@@ -56,6 +56,7 @@ export const AddCourseModal: FC<AddCourseModalProps> = ({
   return (
     <BottomSheet
       backgroundStyle={styles.modalBackground}
+      enablePanDownToClose={true}
       onClose={handleClose}
       ref={bottomSheetRef}
       snapPoints={snapPoints}>

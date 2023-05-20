@@ -1,12 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import Config from 'react-native-config';
 
-import {
-  AuthResponse,
-  LoginRequestParams,
-  RegisterRequestParams,
-  UserEndpoints,
-} from './user.types';
+import type { RootState } from 'store/index';
+
+import { GetCurrentUserResponse, UserEndpoints } from './user.types';
 
 const reducerPath = 'userApi';
 
@@ -14,26 +11,24 @@ export const userApi = createApi({
   reducerPath,
   baseQuery: fetchBaseQuery({
     baseUrl: Config.API_URL,
-    headers: {
-      'Content-Type': 'application/json',
+    prepareHeaders: (headers, { getState }) => {
+      const state = getState() as RootState;
+      const token = state.userTokens.accessToken;
+
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
     },
   }),
   endpoints: builder => ({
-    signIn: builder.mutation<AuthResponse, LoginRequestParams>({
-      query: body => ({
-        url: UserEndpoints.Login,
-        method: 'POST',
-        body,
-      }),
-    }),
-    signUp: builder.mutation<AuthResponse, RegisterRequestParams>({
-      query: body => ({
-        url: UserEndpoints.Register,
-        method: 'POST',
-        body,
+    getCurrentUser: builder.query<GetCurrentUserResponse, void>({
+      query: () => ({
+        url: UserEndpoints.GetCurrentUser,
+        method: 'GET',
       }),
     }),
   }),
 });
 
-export const { useSignInMutation, useSignUpMutation } = userApi;
+export const { useLazyGetCurrentUserQuery } = userApi;

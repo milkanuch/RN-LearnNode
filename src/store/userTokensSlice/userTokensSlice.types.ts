@@ -1,3 +1,3 @@
 export interface UserTokensState {
-  accessToken: string;
+  accessToken: string | null;
 }

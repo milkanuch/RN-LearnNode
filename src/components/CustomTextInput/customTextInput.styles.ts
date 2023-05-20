@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     marginVertical: SIZES.XXS,
   },
   label: {
-    color: COLORS.purple,
+    color: COLORS.white,
     fontSize: SIZES.L,
     marginVertical: SIZES.XXXS,
     ...SPACE_MONO_REGULAR,

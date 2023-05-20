@@ -7,7 +7,7 @@ import { SIZES } from 'constants/sizes/sizes';
 export const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: COLORS.purple,
+    backgroundColor: COLORS.white,
     borderRadius: 4,
     flexDirection: 'row',
     justifyContent: 'center',

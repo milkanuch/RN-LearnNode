@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { FlatList, ListRenderItem, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { FlatList, ListRenderItem, RefreshControl, View } from 'react-native';
 
 import { CustomButton } from 'components/CustomButton/CustomButton';
 
@@ -7,6 +7,7 @@ import { AppLoadingScreen } from 'screens/AppLoadingScreen/AppLoadingScreen';
 
 import { useGetCoursesQuery } from 'services/courses';
 import { Course } from 'services/courses/course.types';
+import { useLazyGetCurrentUserQuery } from 'services/user';
 
 import { AddCourseModal } from './AddCourseModal/AddCourseModal';
 import { EmptyCoursesListComponent } from './EmptyCoursesListComponent/EmptyCoursesListComponent';
@@ -27,9 +28,18 @@ const keyExtractor = (item: Course) => item._id;
 
 export const HomeScreen = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const { data: courses, isLoading } = useGetCoursesQuery();
+  const {
+    data: courses,
+    isLoading,
+    refetch,
+    isFetching,
+  } = useGetCoursesQuery();
 
-  if (isLoading) return <AppLoadingScreen />;
+  const [triggerCurrentUser] = useLazyGetCurrentUserQuery();
+
+  useEffect(() => {
+    triggerCurrentUser();
+  }, [triggerCurrentUser]);
 
   const handleOpenModal = () => {
     setIsVisible(true);
@@ -39,12 +49,25 @@ export const HomeScreen = () => {
     setIsVisible(false);
   };
 
+  const handleRefresh = () => {
+    refetch();
+  };
+
+  const refreshControl = (
+    <RefreshControl onRefresh={handleRefresh} refreshing={isFetching} />
+  );
+
+  if (isLoading) {
+    return <AppLoadingScreen />;
+  }
+
   return (
     <View style={styles.screen}>
       <FlatList
         ListEmptyComponent={EmptyCoursesListComponent}
         data={courses}
         keyExtractor={keyExtractor}
+        refreshControl={refreshControl}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
       />

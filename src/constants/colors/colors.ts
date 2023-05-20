@@ -1,12 +1,11 @@
 export const COLORS = {
   red: '#FF3742',
-  grey: '#363E40',
-  white: '#ffffff',
+  grey: '#333333',
   black: '#000000',
   green: '#20E070',
-  purple: '#6C63FF',
-  darkGrey: '#363E40',
-  lightGrey: '#949fa6',
-  darkPurple: '#3c30ff',
+  white: '#E4E4E4',
+  darkGrey: '#111111',
+  lightGrey: '#3F3F3F',
+  lightGreen: '#14FFEC',
   transparent: 'transparent',
 };

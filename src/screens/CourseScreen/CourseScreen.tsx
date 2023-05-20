@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { View, Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 
 import { useGetCourseByIdQuery } from 'services/courses';
 
@@ -8,11 +8,14 @@ import { CourseScreenProps } from 'navigation/AppStackNavigation/appStackNavigat
 
 export const CourseScreen: FC<CourseScreenProps> = ({ route }) => {
   const { id } = route.params;
-  const { data: courseInfo } = useGetCourseByIdQuery(id);
+  const { data } = useGetCourseByIdQuery(id);
 
   return (
-    <View style={styles.screen}>
-      <Text>{courseInfo?.name}</Text>
-    </View>
+    <ScrollView
+      contentContainerStyle={styles.screenContainer}
+      style={styles.screen}>
+      <Text style={styles.title}>{data?.name}</Text>
+      <Text style={styles.title}>{data?.description}</Text>
+    </ScrollView>
   );
 };

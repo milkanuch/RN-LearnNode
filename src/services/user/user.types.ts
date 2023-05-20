@@ -1,19 +1,8 @@
 export enum UserEndpoints {
-  Login = '/auth/login',
-  Register = '/auth/register',
+  GetCurrentUser = '/user/',
 }
 
-export interface LoginRequestParams {
+export interface GetCurrentUserResponse {
   email: string;
-  password: string;
-}
-
-export interface RegisterRequestParams {
   nickname: string;
-  email: string;
-  password: string;
-}
-
-export interface AuthResponse {
-  accessToken: string;
 }

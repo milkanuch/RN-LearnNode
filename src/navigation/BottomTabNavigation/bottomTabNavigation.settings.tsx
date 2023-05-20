@@ -21,7 +21,7 @@ export const DRAWER_NAVIGATION_OPTIONS: BottomTabNavigationOptions = {
   },
   tabBarIcon: focused => (
     <Icon
-      color={focused ? COLORS.purple : COLORS.white}
+      color={focused ? COLORS.white : COLORS.white}
       name={ICONS.home}
       size={ICONS_SIZE}
     />
@@ -37,7 +37,7 @@ export const PROFILE_STACK_OPTIONS: BottomTabNavigationOptions = {
   },
   tabBarIcon: focused => (
     <Icon
-      color={focused ? COLORS.purple : COLORS.white}
+      color={focused ? COLORS.white : COLORS.white}
       name={ICONS.profile}
       size={ICONS_SIZE}
     />
