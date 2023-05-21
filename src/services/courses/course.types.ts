@@ -1,3 +1,5 @@
+import { Quiz } from 'store/addQuizSlice/addQuizSlice.types';
+
 export enum CourseEndpoints {
   GetCourses = '/courses/',
   AddCourse = '/courses/add-course',
@@ -8,7 +10,7 @@ export interface Course {
   _id: string;
   name: string;
   description: string;
-  link?: string;
+  quizzes?: Quiz[];
 }
 
 export type GetCourseByIdRequest = Course['_id'];

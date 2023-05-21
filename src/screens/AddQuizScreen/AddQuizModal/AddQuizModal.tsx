@@ -74,7 +74,7 @@ export const AddQuizModal: FC<AddQuizModalProps> = ({
   const handleCompleteAddQuiz = () => {
     const { question } = getValues();
 
-    if (!answers || !question) return;
+    if (!answers || !question || !correctAnswer) return;
 
     dispatch(
       addQuiz({

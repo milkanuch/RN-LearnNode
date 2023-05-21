@@ -1,20 +1,37 @@
 import { StyleSheet } from 'react-native';
 
+import { initialWindowMetrics } from 'react-native-safe-area-context';
+
 import { COLORS } from 'constants/colors/colors';
 import { SPACE_MONO_REGULAR } from 'constants/fonts/fonts';
-import { responsiveHeight, SIZES } from 'constants/sizes/sizes';
+import {
+  responsiveHeight,
+  responsiveWidth,
+  SIZES,
+} from 'constants/sizes/sizes';
 
 const PROGRESS_BAR_HEIGHT = 2;
-
-const CONTINUE_BUTTON_HEIGHT = 7;
+const BUTTON_WIDTH_PERCENTAGE = 45;
+const BOTTOM_INSET = initialWindowMetrics?.insets.bottom || 0;
 
 export const styles = StyleSheet.create({
-  answersList: {
-    flexGrow: 0,
+  button: {
+    width: responsiveWidth(BUTTON_WIDTH_PERCENTAGE),
+  },
+  buttonsContainer: {
+    bottom: BOTTOM_INSET + SIZES.M,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    left: SIZES.M,
+    marginTop: SIZES.M,
+    position: 'absolute',
+    right: SIZES.M,
   },
   continueButton: {
-    marginBottom: responsiveHeight(CONTINUE_BUTTON_HEIGHT),
     marginTop: SIZES.XS,
+  },
+  disabledButton: {
+    backgroundColor: COLORS.red,
   },
   progressBarContainer: {
     backgroundColor: COLORS.lightGrey,
