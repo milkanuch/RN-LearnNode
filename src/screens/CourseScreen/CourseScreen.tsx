@@ -17,7 +17,7 @@ export const CourseScreen: FC<CourseScreenProps> = ({ route, navigation }) => {
   const { data } = useGetCourseByIdQuery(id);
 
   const handleStartQuiz = () => {
-    navigation.navigate(AppStackNavigationTypes.QuizScreen);
+    navigation.navigate(AppStackNavigationTypes.AddQuizScreen, { id });
   };
 
   return (
