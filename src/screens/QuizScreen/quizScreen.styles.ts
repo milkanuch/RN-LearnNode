@@ -4,7 +4,7 @@ import { COLORS } from 'constants/colors/colors';
 import { SPACE_MONO_REGULAR } from 'constants/fonts/fonts';
 import { responsiveHeight, SIZES } from 'constants/sizes/sizes';
 
-const PROGRESS_BAR_HEIGHT = 3;
+const PROGRESS_BAR_HEIGHT = 2;
 
 const CONTINUE_BUTTON_HEIGHT = 7;
 
@@ -14,11 +14,12 @@ export const styles = StyleSheet.create({
   },
   continueButton: {
     marginBottom: responsiveHeight(CONTINUE_BUTTON_HEIGHT),
+    marginTop: SIZES.XS,
   },
   progressBarContainer: {
     backgroundColor: COLORS.lightGrey,
     height: responsiveHeight(PROGRESS_BAR_HEIGHT),
-    marginVertical: SIZES.M,
+    marginVertical: SIZES.XXXXL,
     width: '80%',
   },
   progressContainer: {

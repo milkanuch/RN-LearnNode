@@ -1,0 +1,2 @@
+export const CONTINUE_BUTTON_TITLE = 'CONTINUE';
+export const FINISH_BUTTON_TITLE = 'FINISH';

@@ -1,34 +1,31 @@
 import { StyleSheet } from 'react-native';
 
 import { COLORS } from 'constants/colors/colors';
-import { SPACE_MONO_REGULAR } from 'constants/fonts/fonts';
 import { SIZES, responsiveHeight } from 'constants/sizes/sizes';
 
 const ITEM_HEIGHT = 5;
 
 export const styles = StyleSheet.create({
   activeAnswerContainer: {
-    backgroundColor: COLORS.green,
+    backgroundColor: COLORS.lightGreen,
   },
-  activeTitle: {
-    color: COLORS.white,
-  },
-  answerContainer: {
+  container: {
     alignItems: 'center',
     backgroundColor: COLORS.white,
     borderRadius: SIZES.XXS,
+    borderWidth: 1,
     flexDirection: 'row',
     height: responsiveHeight(ITEM_HEIGHT),
-    marginVertical: SIZES.M,
+    justifyContent: 'space-between',
+    marginVertical: SIZES.XS,
     paddingHorizontal: SIZES.S,
   },
-  icon: {
-    backgroundColor: COLORS.white,
-    borderRadius: 30,
+  iconButton: {
+    backgroundColor: COLORS.transparent,
   },
-  title: {
-    fontSize: SIZES.XL,
-    paddingLeft: SIZES.S,
-    ...SPACE_MONO_REGULAR,
+  titleContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });

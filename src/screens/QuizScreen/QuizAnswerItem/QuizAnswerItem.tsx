@@ -1,12 +1,42 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
-import { styles } from './quizAnswerItem.styles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const QuizAnswerItem = () => {
+import { IconSize } from 'components/CustomButton/customButton.types';
+
+import { COLORS } from 'constants/colors/colors';
+
+import { ICON_NAME } from './quizAnswerItem.settings';
+import { styles } from './quizAnswerItem.styles';
+import { QuizAnswerItemProps } from './quizAnswerItem.types';
+
+export const QuizAnswerItem: FC<QuizAnswerItemProps> = ({
+  answer,
+  onPress,
+  activeAnswer,
+}) => {
+  const handleAnswerPress = () => onPress(answer);
+  const isActive = activeAnswer === answer;
+
   return (
-    <TouchableOpacity style={styles.answerContainer}>
-      <Text>QuizAnswerItem</Text>
+    <TouchableOpacity
+      onPress={handleAnswerPress}
+      style={[
+        styles.answerContainer,
+        isActive && styles.activeAnswerContainer,
+      ]}>
+      {!!isActive && (
+        <Icon
+          color={COLORS.green}
+          name={ICON_NAME}
+          size={IconSize.Large}
+          style={styles.icon}
+        />
+      )}
+      <Text style={[styles.title, isActive && styles.activeTitle]}>
+        {answer}
+      </Text>
     </TouchableOpacity>
   );
 };
