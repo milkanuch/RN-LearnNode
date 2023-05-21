@@ -31,6 +31,11 @@ export type QuizScreenProps = NativeStackScreenProps<
   AppStackNavigationTypes.QuizScreen
 >;
 
+export type QuizResultScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  AppStackNavigationTypes.QuizResultScreen
+>;
+
 export type AddQuizScreenProps = NativeStackScreenProps<
   AppStackParamList,
   AppStackNavigationTypes.AddQuizScreen

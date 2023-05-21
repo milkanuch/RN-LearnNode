@@ -4,7 +4,7 @@ import { COLORS } from 'constants/colors/colors';
 
 export const PROFILE_SCREEN_OPTIONS: NativeStackNavigationOptions = {
   headerShown: true,
-  headerTitle: 'Your Profile',
+  headerTitle: 'Your Profile Information',
   headerTitleAlign: 'center',
   headerTitleStyle: {
     color: COLORS.lightGreen,
