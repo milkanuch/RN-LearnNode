@@ -1,24 +1,32 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { AddQuizScreenParams } from 'screens/AddQuizScreen/addQuizScreen.types';
 import { CourseScreenParams } from 'screens/CourseScreen/courseScreen.type';
 
 export enum AppStackNavigationTypes {
   BottomTab = 'BottomTab',
   CourseScreen = 'CourseScreen',
   QuizScreen = 'QuizScreen',
+  AddQuizScreen = 'AddQuizScreen',
   QuizResultScreen = 'QuizResultScreen',
 }
 
 export type AppStackParamList = {
   [AppStackNavigationTypes.BottomTab]: undefined;
-  [AppStackNavigationTypes.CourseScreen]: CourseScreenParams;
   [AppStackNavigationTypes.QuizScreen]: undefined;
+  [AppStackNavigationTypes.CourseScreen]: CourseScreenParams;
+  [AppStackNavigationTypes.AddQuizScreen]: AddQuizScreenParams;
   [AppStackNavigationTypes.QuizResultScreen]: undefined;
 };
 
 export type CourseScreenProps = NativeStackScreenProps<
   AppStackParamList,
   AppStackNavigationTypes.CourseScreen
+>;
+
+export type AddQuizScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  AppStackNavigationTypes.AddQuizScreen
 >;
 
 //NOTE: This eslint rules is unnecessary here
