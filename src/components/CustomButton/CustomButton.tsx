@@ -15,6 +15,7 @@ export const CustomButton: FC<CustomButtonProps> = ({
   children,
   style,
   titleStyle,
+  leftIcon,
   buttonType = ButtonSize.Large,
   ...props
 }) => (
@@ -22,6 +23,7 @@ export const CustomButton: FC<CustomButtonProps> = ({
     onPress={handlePress}
     style={[styles.button, style, !!icon && styles.icon]}
     {...props}>
+    {!!leftIcon && <Icon name={leftIcon} size={iconSize} style={styles.icon} />}
     {!!title && (
       <Text style={[styles[buttonType], styles.text, titleStyle]}>{title}</Text>
     )}
