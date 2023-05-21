@@ -16,6 +16,7 @@ import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 import { authApi } from 'services/auth';
 import { courseApi } from 'services/courses';
 import { quizApi } from 'services/quiz';
+import { resultApi } from 'services/result';
 import { userApi } from 'services/user';
 
 import { rootReducer } from './reducers';
@@ -39,8 +40,9 @@ export const store = configureStore({
     }).concat(
       userApi.middleware,
       authApi.middleware,
-      courseApi.middleware,
       quizApi.middleware,
+      courseApi.middleware,
+      resultApi.middleware,
     ),
 });
 
