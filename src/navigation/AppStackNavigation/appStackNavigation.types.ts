@@ -2,6 +2,8 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { AddQuizScreenParams } from 'screens/AddQuizScreen/addQuizScreen.types';
 import { CourseScreenParams } from 'screens/CourseScreen/courseScreen.type';
+import { QuizResultScreenParams } from 'screens/QuizResultScreen/quizResultScreen.types';
+import { QuizScreenParams } from 'screens/QuizScreen/quizScreen.types';
 
 export enum AppStackNavigationTypes {
   BottomTab = 'BottomTab',
@@ -13,15 +15,20 @@ export enum AppStackNavigationTypes {
 
 export type AppStackParamList = {
   [AppStackNavigationTypes.BottomTab]: undefined;
-  [AppStackNavigationTypes.QuizScreen]: undefined;
+  [AppStackNavigationTypes.QuizScreen]: QuizScreenParams;
   [AppStackNavigationTypes.CourseScreen]: CourseScreenParams;
   [AppStackNavigationTypes.AddQuizScreen]: AddQuizScreenParams;
-  [AppStackNavigationTypes.QuizResultScreen]: undefined;
+  [AppStackNavigationTypes.QuizResultScreen]: QuizResultScreenParams;
 };
 
 export type CourseScreenProps = NativeStackScreenProps<
   AppStackParamList,
   AppStackNavigationTypes.CourseScreen
+>;
+
+export type QuizScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  AppStackNavigationTypes.QuizScreen
 >;
 
 export type AddQuizScreenProps = NativeStackScreenProps<

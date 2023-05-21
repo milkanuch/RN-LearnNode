@@ -15,7 +15,7 @@ export const QUIZ_RESULT_SCREEN_OPTIONS: NativeStackNavigationOptions = {
 
 export const ADD_QUIZ_SCREEN_OPTIONS: NativeStackNavigationOptions = {
   headerShown: true,
-  headerTitle: 'Add Quiz',
+  headerTitle: '',
 };
 
 export const COURSE_SCREEN_OPTIONS: NativeStackNavigationOptions = {
