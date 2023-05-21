@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
   icon: {
     backgroundColor: COLORS.white,
     borderRadius: 30,
+    padding: SIZES.XXXS,
   },
   title: {
     fontSize: SIZES.XL,

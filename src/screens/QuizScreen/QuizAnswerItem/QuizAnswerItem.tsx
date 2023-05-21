@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -27,12 +27,9 @@ export const QuizAnswerItem: FC<QuizAnswerItemProps> = ({
         isActive && styles.activeAnswerContainer,
       ]}>
       {!!isActive && (
-        <Icon
-          color={COLORS.green}
-          name={ICON_NAME}
-          size={IconSize.Large}
-          style={styles.icon}
-        />
+        <View style={styles.icon}>
+          <Icon color={COLORS.green} name={ICON_NAME} size={IconSize.Large} />
+        </View>
       )}
       <Text style={[styles.title, isActive && styles.activeTitle]}>
         {answer}

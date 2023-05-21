@@ -27,10 +27,11 @@ export const styles = StyleSheet.create({
   },
   screen: {
     flex: 1,
+    paddingHorizontal: SIZES.M,
   },
   title: {
     color: COLORS.white,
-    fontSize: SIZES.XL,
+    fontSize: SIZES.XXXXL,
     marginVertical: SIZES.S,
     paddingHorizontal: SIZES.M,
     textAlign: 'center',

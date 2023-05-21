@@ -1,12 +1,25 @@
 import { FC, useState } from 'react';
-import { View, Text, FlatList, ListRenderItem } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  ListRenderItem,
+  TouchableOpacity,
+} from 'react-native';
 
 import { CustomButton } from 'components/CustomButton/CustomButton';
 import { IconSize } from 'components/CustomButton/customButton.types';
 
-import { selectQuizzes } from 'store/addQuizSlice/addQuizSlice';
+import { AppLoadingScreen } from 'screens/AppLoadingScreen/AppLoadingScreen';
+
+import { useCreateQuizMutation } from 'services/quiz';
+import {
+  removeAllQuizzes,
+  removeQuizByQuestion,
+  selectQuizzes,
+} from 'store/addQuizSlice/addQuizSlice';
 import { Quiz } from 'store/addQuizSlice/addQuizSlice.types';
-import { useAppSelector } from 'store/index';
+import { useAppDispatch, useAppSelector } from 'store/index';
 
 import { AddQuizModal } from './AddQuizModal/AddQuizModal';
 
@@ -19,15 +32,17 @@ import {
 import { styles } from './addQuizScreen.styles';
 import { AddQuizScreenProps } from 'navigation/AppStackNavigation/appStackNavigation.types';
 
-const renderItem: ListRenderItem<Quiz> = ({ item }) => (
-  <Text style={styles.questionTitle}>{item.question}</Text>
-);
-
 const keyExtractor = (item: Quiz, index: number) => item.question + index;
 
-export const AddQuizScreen: FC<AddQuizScreenProps> = () => {
+export const AddQuizScreen: FC<AddQuizScreenProps> = ({
+  route,
+  navigation,
+}) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const quizzes = useAppSelector(selectQuizzes);
+  const dispatch = useAppDispatch();
+  const [createQuiz, { isLoading }] = useCreateQuizMutation();
+  const { id } = route.params;
 
   const handleAddQuestion = () => {
     setIsVisible(true);
@@ -37,8 +52,17 @@ export const AddQuizScreen: FC<AddQuizScreenProps> = () => {
     setIsVisible(false);
   };
 
-  const handleCompleteAddQuiz = () => {
-    //TODO: add logic
+  const handleDeleteQuestion = (question: string) => {
+    dispatch(removeQuizByQuestion(question));
+  };
+
+  const handleCompleteAddQuiz = async () => {
+    if (id && quizzes.length > 0) {
+      await createQuiz({ id, quizzes });
+    }
+
+    dispatch(removeAllQuizzes());
+    navigation.goBack();
   };
 
   const ListFooterComponent = (
@@ -48,6 +72,22 @@ export const AddQuizScreen: FC<AddQuizScreenProps> = () => {
       title={ADD_QUESTION_TITLE}
     />
   );
+
+  const renderItem: ListRenderItem<Quiz> = ({ item }) => {
+    const handleDelete = () => {
+      handleDeleteQuestion(item.question);
+    };
+
+    return (
+      <TouchableOpacity onLongPress={handleDelete}>
+        <Text style={styles.questionTitle}>{item.question}</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  if (isLoading) {
+    return <AppLoadingScreen />;
+  }
 
   return (
     <View style={styles.screen}>

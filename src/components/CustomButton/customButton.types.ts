@@ -1,4 +1,4 @@
-import type { TextStyle, TouchableOpacityProps } from 'react-native';
+import type { TextStyle, TouchableOpacityProps, ViewStyle } from 'react-native';
 
 import { SIZES } from 'constants/sizes/sizes';
 
@@ -16,6 +16,7 @@ export enum IconSize {
 export type CustomButtonProps = TouchableOpacityProps & {
   title?: string;
   icon?: string;
+  leftIcon?: string;
   titleStyle?: TextStyle;
   iconSize?: IconSize;
   buttonType?: ButtonSize;

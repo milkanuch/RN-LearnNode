@@ -15,6 +15,7 @@ import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 import { authApi } from 'services/auth';
 import { courseApi } from 'services/courses';
+import { quizApi } from 'services/quiz';
 import { userApi } from 'services/user';
 
 import { rootReducer } from './reducers';
@@ -35,7 +36,12 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(userApi.middleware, authApi.middleware, courseApi.middleware),
+    }).concat(
+      userApi.middleware,
+      authApi.middleware,
+      courseApi.middleware,
+      quizApi.middleware,
+    ),
 });
 
 export type RootState = ReturnType<typeof persistedReducer>;
