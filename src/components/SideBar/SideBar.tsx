@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Text, View } from 'react-native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,8 +17,6 @@ import {
   HOME_BUTTON_TITLE,
   LOG_OUT_BUTTON_ICON,
   LOG_OUT_BUTTON_TITLE,
-  RATINGS_BUTTON_ICON,
-  RATINGS_BUTTON_TITLE,
 } from './sideBar.settings';
 import { styles } from './sideBar.styles';
 import { EDGES } from 'navigation/AuthStackNavigation/authStackNavigation.settings';
@@ -35,7 +32,6 @@ export const SideBar: FC<DrawerContentComponentProps> = ({ navigation }) => {
   };
 
   const handleLogOutPress = () => {
-    AsyncStorage.removeItem('accessToken');
     dispatch(deleteUserToken());
     dispatch(setIsUserLogged(false));
   };
@@ -52,13 +48,6 @@ export const SideBar: FC<DrawerContentComponentProps> = ({ navigation }) => {
             iconSize={IconSize.Large}
             onPress={handleHomePress}
             title={HOME_BUTTON_TITLE}
-          />
-          <CustomButton
-            icon={RATINGS_BUTTON_ICON}
-            iconSize={IconSize.Large}
-            onPress={handleHomePress}
-            style={styles.button}
-            title={RATINGS_BUTTON_TITLE}
           />
         </View>
         <CustomButton
