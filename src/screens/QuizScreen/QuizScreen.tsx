@@ -53,7 +53,12 @@ export const QuizScreen: FC<QuizScreenProps> = ({ route, navigation }) => {
       (answers[currentQuizIndex] = selectedAnswer || ''),
     ]);
     if (data && currentQuizIndex === data.length - 1) {
-      navigation.navigate(AppStackNavigationTypes.QuizResultScreen, { id });
+      const resultQuizParams = { id, answers, quizzes: data };
+
+      navigation.navigate(
+        AppStackNavigationTypes.QuizResultScreen,
+        resultQuizParams,
+      );
     }
 
     setCurrentQuizIndex(isNextAvailable ? currentQuizIndex + 1 : 0);

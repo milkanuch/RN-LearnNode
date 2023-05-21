@@ -8,10 +8,17 @@ import { AppLoadingScreen } from 'screens/AppLoadingScreen/AppLoadingScreen';
 import { useGetCoursesQuery } from 'services/courses';
 import { Course } from 'services/courses/course.types';
 import { useLazyGetCurrentUserQuery } from 'services/user';
+import { useAppDispatch, useAppSelector } from 'store/index';
+import {
+  selectIsUserAdmin,
+  selectUserEmail,
+  setUserIsAdmin,
+} from 'store/userSlice/userSlice';
 
 import { AddCourseModal } from './AddCourseModal/AddCourseModal';
 import { EmptyCoursesListComponent } from './EmptyCoursesListComponent/EmptyCoursesListComponent';
 import { SectionsItem } from './SectionsItem/SectionsItem';
+import { checkIsUserAdmin } from './homeScreen.utils';
 
 import { ADD_COURSE_ICON } from './homeScreen.settings';
 import { styles } from './homeScreen.styles';
@@ -34,12 +41,20 @@ export const HomeScreen = () => {
     refetch,
     isFetching,
   } = useGetCoursesQuery();
-
   const [triggerCurrentUser] = useLazyGetCurrentUserQuery();
+  const userEmail = useAppSelector(selectUserEmail);
+  const isUserAdmin = useAppSelector(selectIsUserAdmin);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     triggerCurrentUser();
   }, [triggerCurrentUser]);
+
+  useEffect(() => {
+    if (userEmail) {
+      dispatch(setUserIsAdmin(checkIsUserAdmin(userEmail)));
+    }
+  }, [dispatch, userEmail]);
 
   const handleOpenModal = () => {
     setIsVisible(true);
@@ -71,12 +86,14 @@ export const HomeScreen = () => {
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
       />
-      <CustomButton
-        icon={ADD_COURSE_ICON}
-        iconSize={30}
-        onPress={handleOpenModal}
-        style={styles.addButton}
-      />
+      {!!isUserAdmin && (
+        <CustomButton
+          icon={ADD_COURSE_ICON}
+          iconSize={30}
+          onPress={handleOpenModal}
+          style={styles.addButton}
+        />
+      )}
       {!!isVisible && <AddCourseModal onClose={handleClose} />}
     </View>
   );

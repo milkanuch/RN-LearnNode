@@ -5,6 +5,7 @@ import { courseApi } from 'services/courses/index';
 import { userApi } from 'services/user';
 
 import { quizApi } from './../services/quiz/index';
+import { resultApi } from './../services/result/index';
 import { addQuizReducer } from './addQuizSlice/addQuizSlice';
 import { userReducer } from './userSlice/userSlice';
 import { userTokensReducer } from './userTokensSlice/userTokensSlice';
@@ -16,5 +17,6 @@ export const rootReducer = combineReducers({
   quizApi: quizApi.reducer,
   authApi: authApi.reducer,
   userApi: userApi.reducer,
+  resultApi: resultApi.reducer,
   courseApi: courseApi.reducer,
 });

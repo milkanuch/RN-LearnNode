@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { RefreshControl, ScrollView, Text, View } from 'react-native';
 
 import { CustomButton } from 'components/CustomButton/CustomButton';
 
@@ -17,7 +17,7 @@ import {
 
 export const CourseScreen: FC<CourseScreenProps> = ({ route, navigation }) => {
   const { id } = route.params;
-  const { data } = useGetCourseByIdQuery(id);
+  const { data, refetch, isFetching } = useGetCourseByIdQuery(id);
 
   const handleCreateQuiz = () => {
     navigation.navigate(AppStackNavigationTypes.AddQuizScreen, { id });
@@ -27,11 +27,20 @@ export const CourseScreen: FC<CourseScreenProps> = ({ route, navigation }) => {
     navigation.navigate(AppStackNavigationTypes.QuizScreen, { id });
   };
 
+  const handleRefresh = () => {
+    refetch();
+  };
+
   const isCreateButtonAvailable = data && !data?.quizzes?.length;
+
+  const refreshControl = (
+    <RefreshControl onRefresh={handleRefresh} refreshing={isFetching} />
+  );
 
   return (
     <ScrollView
       contentContainerStyle={styles.screenContainer}
+      refreshControl={refreshControl}
       style={styles.screen}>
       <Text style={styles.title}>{data?.name}</Text>
       <Text style={styles.description}>{data?.description}</Text>

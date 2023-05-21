@@ -3,7 +3,11 @@ import Config from 'react-native-config';
 
 import type { RootState } from 'store/index';
 
-import { GetCurrentUserResponse, UserEndpoints } from './user.types';
+import {
+  GetCurrentUserResponse,
+  UpdateCurrentUserRequest,
+  UserEndpoints,
+} from './user.types';
 
 const reducerPath = 'userApi';
 
@@ -16,8 +20,9 @@ export const userApi = createApi({
       const token = state.userTokens.accessToken;
 
       if (token) {
-        headers.set('authorization', `Bearer ${token}`);
+        headers.set('Authorization', `Bearer ${token}`);
       }
+
       return headers;
     },
   }),
@@ -28,7 +33,18 @@ export const userApi = createApi({
         method: 'GET',
       }),
     }),
+    updateCurrentUser: builder.mutation<void, UpdateCurrentUserRequest>({
+      query: body => ({
+        url: UserEndpoints.UpdateCurrentUser,
+        method: 'PUT',
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useLazyGetCurrentUserQuery } = userApi;
+export const {
+  useLazyGetCurrentUserQuery,
+  useGetCurrentUserQuery,
+  useUpdateCurrentUserMutation,
+} = userApi;
