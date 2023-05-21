@@ -1,4 +1,4 @@
-import type { TextStyle, TouchableOpacityProps, ViewStyle } from 'react-native';
+import type { TextStyle, TouchableOpacityProps } from 'react-native';
 
 import { SIZES } from 'constants/sizes/sizes';
 

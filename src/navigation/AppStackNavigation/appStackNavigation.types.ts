@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { AddQuizScreenParams } from 'screens/AddQuizScreen/addQuizScreen.types';
-import { CourseScreenParams } from 'screens/CourseScreen/courseScreen.type';
+import { CourseScreenParams } from 'screens/CourseScreen/courseScreen.types';
 import { QuizResultScreenParams } from 'screens/QuizResultScreen/quizResultScreen.types';
 import { QuizScreenParams } from 'screens/QuizScreen/quizScreen.types';
 
